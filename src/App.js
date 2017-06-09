@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import {
-	PageHeader
-} from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 
 
 class App extends Component {
 	render() {
 		return (
-				<PageHeader>
-					Kanban board <small>simple organization tool</small>
-				</PageHeader>
+				<Navbar>
+					<Navbar.Brand>Kanban board</Navbar.Brand>
+				</Navbar>
 			);
 	}
 }
