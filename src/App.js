@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Navbar, Grid, Row } from 'react-bootstrap';
+import { Navbar, Grid, Row, Col } from 'react-bootstrap';
 import Board from './components/Board';
+import Task from './components/Task';
 
 class App extends Component {
 	render() {
@@ -13,9 +14,12 @@ class App extends Component {
 					
 					<Grid>
 						<Row>
-							<Board name="To-do">
-								Tasks
-							</Board>
+							<Col xs={6}>
+								<Board name="To-do">
+									<Task title="Lol">Sfasklfsa</Task>
+									<Task title="Musor">Virbros musor uzhe</Task>
+								</Board>
+							</Col>
 						</Row>
 					</Grid>
 					

@@ -1,11 +1,16 @@
 import React from 'react';
-import {Panel} from 'react-bootstrap';
+import {PageHeader} from 'react-bootstrap';
 
 function Board(props) {
     return (
-        <Panel header={props.name}>
-            {props.children}
-        </Panel>        
+        <div className="Board">
+            <PageHeader>
+                {props.name}
+            </PageHeader>
+            <div className="content">
+                {props.children}
+            </div>
+        </div>
     )
 }
 
