@@ -36,11 +36,7 @@ const boards = [
 class App extends Component {
 	render() {
 		return (
-			<div className="app">
-				<Navbar fluid>
-					<Navbar.Brand>Kanban board</Navbar.Brand>
-				</Navbar>
-
+			<div className="App">
 				<Grid fluid>
 					<BoardsContainer boards={boards} />
 
@@ -52,6 +48,14 @@ class App extends Component {
 				<Button className="App__add-button pull-right" bsStyle="primary" bsSize="large" >
 					<Glyphicon glyph="plus" /> Add Task
 				</Button>
+
+				<Navbar
+					className="App__footer"
+					fixedBottom
+					fluid
+				>
+					<Navbar.Brand className="App__footer-title">Kanban board</Navbar.Brand>
+				</Navbar>
 			</div>
 		);
 	}

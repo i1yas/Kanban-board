@@ -1,5 +1,13 @@
 .App__add-button {
 	position: fixed;
+	z-index: 3000;
 	right: 30px;
 	bottom: 30px;
+}
+
+.App__footer {
+	background-color: #ebebeb;
+}
+.App__footer-title {
+	color: #b0b0b0;
 }
