@@ -10,11 +10,12 @@ const boards = [
 		tasks: [
 			{
 				title: "Rest",
-				content: "Just relax and listen music"
+				content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid repellendus fugit ipsam rem dicta id, error neque repudiandae, quasi voluptatem repellat nesciunt accusantium. Repudiandae voluptas quia, assumenda dolores tenetur, ipsum."
 			},
 			{
 				title: "Do sport",
-				content: "Run, swim, jump e.t.c."
+				content: "Run, swim, jump e.t.c.",
+				labels: ["run", "sport", "swim"]
 			}
 		]
 	},
@@ -23,7 +24,9 @@ const boards = [
 		tasks: [
 			{
 				title: "Learn",
-				content: "Understand integrals"
+				content: "Understand integrals",
+				labels: ["math", "learn"],
+				importantLabels: ["matanalysis"]
 			},
 			{
 				title: "Phone",

@@ -12,7 +12,14 @@ function Board(props) {
 			<div className="content">
 				{props.tasks.map((task, ind) => {
 					return (
-						<Task key={ind} title={task.title}>{task.content}</Task>
+						<Task
+							key={ind}
+							title={task.title}
+							labels={task.labels}
+							importantLabels={task.importantLabels}
+						>
+							{task.content}
+						</Task>
 					);
 				})}
 			</div>
