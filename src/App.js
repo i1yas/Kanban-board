@@ -36,11 +36,11 @@ class App extends Component {
 	render() {
 		return (
 			<div className="app">
-				<Navbar>
+				<Navbar fluid>
 					<Navbar.Brand>Kanban board</Navbar.Brand>
 				</Navbar>
 
-				<Grid>
+				<Grid fluid>
 					<BoardsContainer boards={boards} />
 
 					<Row />
