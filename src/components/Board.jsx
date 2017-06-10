@@ -1,5 +1,6 @@
 import React from 'react';
 import {PageHeader} from 'react-bootstrap';
+import Task from './Task';
 
 function Board(props) {
     return (
@@ -8,7 +9,13 @@ function Board(props) {
                 {props.name}
             </PageHeader>
             <div className="content">
-                {props.children}
+                {props.tasks.map(task => {
+                	return (
+                			<Task
+                				title={task.title}
+                			>{task.content}</Task>
+                		);
+                })}
             </div>
         </div>
     )
