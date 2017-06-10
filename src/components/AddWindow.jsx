@@ -4,7 +4,7 @@ import AddForm from './AddForm';
 
 function AddWindow(props) {
 	return (
-		<Modal.Dialog>
+		<Modal>
 			<Modal.Header>
 				<Modal.Title>New Task</Modal.Title>
 			</Modal.Header>
@@ -18,7 +18,7 @@ function AddWindow(props) {
 				<Button bsStyle="primary">Add task</Button>
 			</Modal.Footer>
 
-		</Modal.Dialog>
+		</Modal>
 	);
 }
 
