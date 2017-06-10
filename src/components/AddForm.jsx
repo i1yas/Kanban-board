@@ -12,6 +12,15 @@ function AddForm(props) {
 				<ControlLabel>Task content</ControlLabel> 
 				<FormControl componentClass="textarea" />
 			</FormGroup>
+			<hr />
+			<FormGroup controlId="addFormLabels">
+				<ControlLabel>Labels</ControlLabel> 
+				<FormControl type="text" placeholder="list of labels separated by a comma" />
+			</FormGroup>
+			<FormGroup controlId="addFormImportantLabels">
+				<ControlLabel>Important labels</ControlLabel> 
+				<FormControl type="text" placeholder="list of labels separated by a comma" />
+			</FormGroup>
 		</Form>
 	);
 }
