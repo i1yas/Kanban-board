@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import './App.css';
-import { Navbar } from 'react-bootstrap';
-import BoardsContainer from './components/BoardsContainer';
+import React, { Component } from "react";
+import "./App.css";
+import { Grid, Row, Navbar, Button, Glyphicon } from "react-bootstrap";
+import BoardsContainer from "./components/BoardsContainer";
 
 const boards = [
 	{
@@ -30,7 +30,7 @@ const boards = [
 			}
 		]
 	}
-]
+];
 
 class App extends Component {
 	render() {
@@ -40,11 +40,21 @@ class App extends Component {
 					<Navbar.Brand>Kanban board</Navbar.Brand>
 				</Navbar>
 
-				<BoardsContainer boards={boards} />
+				<Grid>
+					<BoardsContainer boards={boards} />
 
+					<Row>
+						<Button
+							className="pull-right"
+							bsStyle="primary"
+							bsSize="large"
+						>
+							<Glyphicon glyph="plus" /> Add Task
+						</Button>
+					</Row>
+				</Grid>
 			</div>
 		);
 	}
 }
-
 export default App;

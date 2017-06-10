@@ -9,9 +9,10 @@ function Board(props) {
                 {props.name}
             </PageHeader>
             <div className="content">
-                {props.tasks.map(task => {
+                {props.tasks.map((task, ind) => {
                 	return (
                 			<Task
+                				key={ind}
                 				title={task.title}
                 			>{task.content}</Task>
                 		);
