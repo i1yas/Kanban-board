@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { Grid, Row, Navbar, Button, Glyphicon } from "react-bootstrap";
 import BoardsContainer from "./components/BoardsContainer";
+import AddWindow from './components/AddWindow';
 
 const boards = [
 	{
@@ -45,6 +46,8 @@ class App extends Component {
 
 					<Row />
 				</Grid>
+
+				<AddWindow />
 
 				<Button className="App__add-button pull-right" bsStyle="primary" bsSize="large" >
 					<Glyphicon glyph="plus" /> Add Task
