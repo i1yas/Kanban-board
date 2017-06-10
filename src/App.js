@@ -43,16 +43,12 @@ class App extends Component {
 				<Grid>
 					<BoardsContainer boards={boards} />
 
-					<Row>
-						<Button
-							className="pull-right"
-							bsStyle="primary"
-							bsSize="large"
-						>
-							<Glyphicon glyph="plus" /> Add Task
-						</Button>
-					</Row>
+					<Row />
 				</Grid>
+
+				<Button className="App__add-button pull-right" bsStyle="primary" bsSize="large" >
+					<Glyphicon glyph="plus" /> Add Task
+				</Button>
 			</div>
 		);
 	}

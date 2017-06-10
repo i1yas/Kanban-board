@@ -7,7 +7,7 @@ function BoardsContainer(props) {
 		<Row>
 			{props.boards.map((board, ind) => {
 				return (
-					<Col xs={6} key={ind}>
+					<Col sm={6} key={ind}>
 						<Board
 							name={board.name}
 							tasks={board.tasks}
