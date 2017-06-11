@@ -17,6 +17,7 @@ function Board(props) {
 							title={task.title}
 							labels={task.labels}
 							importantLabels={task.importantLabels}
+							image={task.image}
 						>
 							{task.content}
 						</Task>

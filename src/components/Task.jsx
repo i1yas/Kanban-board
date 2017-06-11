@@ -1,12 +1,25 @@
 import React from "react";
-import { Panel, Label } from "react-bootstrap";
+import { Panel, Label, Image, Media } from "react-bootstrap";
 
 function Task(props) {
 	return (
 		<div className="Task">
 			<Panel header={props.title}>
 				<div className="Task__content">
-					{props.children}
+					<Media>
+						{props.image && (
+							<Media.Left>
+								<img
+									src={props.image}
+									alt={props.title}
+									height={100}
+								/>
+							</Media.Left>)
+						}
+						<Media.Body>
+							{props.children}
+						</Media.Body>
+					</Media>
 				</div>
 				<div className="Task__labels">
 					{props.labels &&
