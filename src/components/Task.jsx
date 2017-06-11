@@ -1,5 +1,6 @@
 import React from "react";
 import { Panel, Label, Media } from "react-bootstrap";
+import './Task.css';
 
 function Task(props) {
 	return (
