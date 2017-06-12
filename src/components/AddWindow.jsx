@@ -4,13 +4,13 @@ import AddForm from './AddForm';
 
 function AddWindow(props) {
 	return (
-		<Modal>
+		<Modal show>
 			<Modal.Header>
 				<Modal.Title>New Task</Modal.Title>
 			</Modal.Header>
 
 			<Modal.Body>
-				<AddForm />
+				<AddForm fields={['labels']} />
 			</Modal.Body>
 
 			<Modal.Footer>
