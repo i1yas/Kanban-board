@@ -1,8 +1,12 @@
 import React from "react";
-import { Panel, Label, Media } from "react-bootstrap";
+import { Panel, Label, Media, Button } from "react-bootstrap";
 import "./Task.css";
+import AddForm from "./AddForm";
 
 function Task(props) {
+	const allFields = ['title', 'content', 'labels', 'importantLabels', 'image'];
+	const usedFields = allFields.filter(field => props[field]);
+
 	return (
 		<div className="Task">
 			<Panel header={props.title}>
@@ -46,6 +50,13 @@ function Task(props) {
 								);
 							})}
 					</div>}
+				<div className="Task__editForm">
+					<AddForm fields={usedFields}/>
+					<div className="Task__editForm-buttons pull-right">
+						<Button>Cancel</Button>
+						<Button bsStyle="primary">Save</Button>
+					</div>
+				</div>			
 			</Panel>
 		</div>
 	);
