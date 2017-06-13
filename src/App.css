@@ -1,8 +1,6 @@
-.App__add-button {
-	position: fixed;
-	z-index: 3000;
-	right: 30px;
-	bottom: 30px;
+.App__buttons-toolbar {
+    position: relative;
+    top: -25px;
 }
 
 .App__footer {
