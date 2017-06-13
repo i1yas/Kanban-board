@@ -1,5 +1,5 @@
 import React from "react";
-import { Panel, Label, Media, Button } from "react-bootstrap";
+import { Panel, Label, Media, Button, ButtonToolbar } from "react-bootstrap";
 import "./Task.css";
 import AddForm from "./AddForm";
 
@@ -52,10 +52,10 @@ function Task(props) {
 					</div>}
 				<div className="Task__editForm">
 					<AddForm fields={usedFields}/>
-					<div className="Task__editForm-buttons pull-right">
+					<ButtonToolbar className="Task__editForm-buttons pull-right">
 						<Button>Cancel</Button>
 						<Button bsStyle="primary">Save</Button>
-					</div>
+					</ButtonToolbar>
 				</div>			
 			</Panel>
 		</div>
