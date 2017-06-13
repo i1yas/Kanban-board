@@ -18,9 +18,8 @@ function Board(props) {
 							labels={task.labels}
 							importantLabels={task.importantLabels}
 							image={task.image}
-						>
-							{task.content}
-						</Task>
+							content={task.content}
+						/>
 					);
 				})}
 			</div>

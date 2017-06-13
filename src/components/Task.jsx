@@ -21,7 +21,7 @@ function Task(props) {
 								/>
 							</Media.Left>}
 						<Media.Body>
-							{props.children}
+							{props.content}
 						</Media.Body>
 					</Media>
 				</div>
