@@ -10,8 +10,17 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			boardsList: initialData
+			boardsList: initialData,
+			isShowAddWindow: false
 		}
+	}
+	toggleAddWindow(act) {
+		let isShow;
+		if(act === 'show') isShow = true
+		else if (act === 'hide') isShow = false
+		else isShow = !this.state.isShowAddWindow
+
+		this.setState({...this.state, isShowAddWindow: isShow})
 	}
 	render() {
 		return (
@@ -22,7 +31,12 @@ class App extends Component {
 					<Row />
 				</Grid>
 
-				<AddWindow />
+				<AddWindow
+					show={this.state.isShowAddWindow}
+					actions={{
+						toggleWindow: this.toggleAddWindow.bind(this)
+					}}
+				/>
 
 				<Navbar
 					className="App__footer"
@@ -35,7 +49,11 @@ class App extends Component {
 						<Button bsSize="large" >
 							<Glyphicon glyph="refresh" /> Reset data
 						</Button>
-						<Button bsStyle="primary" bsSize="large" >
+						<Button
+							bsStyle="primary"
+							bsSize="large"
+							onClick={() => this.toggleAddWindow.call(this, 'show')}
+						>
 							<Glyphicon glyph="plus" /> Add Task
 						</Button>
 					</ButtonToolbar>

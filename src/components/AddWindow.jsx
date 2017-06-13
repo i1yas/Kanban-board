@@ -3,8 +3,11 @@ import {Button, Modal} from 'react-bootstrap';
 import AddForm from './AddForm';
 
 function AddWindow(props) {
+	function handleCloseClick() {
+		props.actions.toggleWindow('close');
+	}
 	return (
-		<Modal>
+		<Modal show={props.show}>
 			<Modal.Header>
 				<Modal.Title>New Task</Modal.Title>
 			</Modal.Header>
@@ -14,7 +17,7 @@ function AddWindow(props) {
 			</Modal.Body>
 
 			<Modal.Footer>
-				<Button>Close</Button>
+				<Button onClick={handleCloseClick}>Close</Button>
 				<Button bsStyle="primary">Add task</Button>
 			</Modal.Footer>
 
