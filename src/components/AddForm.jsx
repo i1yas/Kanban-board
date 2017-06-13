@@ -24,6 +24,7 @@ function AddForm(props) {
 					<FormControl componentClass="textarea" />
 				</FormGroup>
 			}
+
 			{(fields.indexOf('labels') !== -1 || fields.indexOf('importantLabels') !== -1) && <hr />}
 			{fields.indexOf('labels') !== -1 &&
 				<FormGroup controlId="addFormLabels">
@@ -37,8 +38,11 @@ function AddForm(props) {
 					<FormControl type="text" placeholder="list of labels separated by a comma" />
 				</FormGroup>
 			}
+
+			{fields.indexOf('image') !== -1 && <hr />}
 			{fields.indexOf('image') !== -1 &&
 				<FormGroup>
+					<ControlLabel>Image</ControlLabel>
 					<InputGroup>
 						<DropdownButton
 							componentClass={InputGroup.Button}
