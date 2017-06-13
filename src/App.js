@@ -4,14 +4,20 @@ import { Grid, Row, Navbar, Button, ButtonToolbar, Glyphicon } from "react-boots
 import BoardsContainer from "./components/BoardsContainer";
 import AddWindow from './components/AddWindow';
 
-import boards from './initialData.json';
+import initialData from './initialData.json';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			boardsList: initialData
+		}
+	}
 	render() {
 		return (
 			<div className="App">
 				<Grid fluid>
-					<BoardsContainer boards={boards} />
+					<BoardsContainer boards={this.state.boardsList} />
 
 					<Row />
 				</Grid>
