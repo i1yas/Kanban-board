@@ -4,7 +4,7 @@ import {
 } from "react-bootstrap";
 
 function AddForm(props) {
-	const allFields = ['title', 'content', 'labels', 'importantLabels'];
+	const allFields = ['title', 'content', 'labels', 'importantLabels', 'image'];
 
 	let fields
 	if (props.fields === 'all') fields = allFields;
