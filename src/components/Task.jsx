@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Panel, Label, Media, Button, ButtonToolbar } from "react-bootstrap";
 import "./Task.css";
 import AddForm from "./AddForm";
+import clickOutsideWrapper from 'react-click-outside';
 
 class Task extends Component {
 	constructor(props) {
@@ -31,6 +32,9 @@ class Task extends Component {
 			return;
 		}
 		this.onEditMode();
+	}
+	handleClickOutside() { // react-click-outside's method
+		this.offEditMode();
 	}
 	render() {
 		const allFields = ['title', 'content', 'labels', 'importantLabels', 'image'];
@@ -106,4 +110,4 @@ class Task extends Component {
 	}
 }
 
-export default Task;
+export default clickOutsideWrapper(Task);
