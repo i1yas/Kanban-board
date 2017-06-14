@@ -22,7 +22,14 @@ class Task extends Component {
 			isEdit: false
 		});
 	}
-	handleClick() {
+	handleCloseClick() {
+		this.offEditMode();
+	}
+	handleClickOnTask(event) {
+		if(this.state.isEdit) {
+			event.stopPropagation();
+			return;
+		}
 		this.onEditMode();
 	}
 	render() {
@@ -34,7 +41,7 @@ class Task extends Component {
 		}
 
 		return (
-			<div className="Task" onClick={this.handleClick.bind(this)}>
+			<div className="Task" onClick={this.handleClickOnTask.bind(this)}>
 				<Panel header={this.props.title}>
 					{!this.state.isEdit &&
 						<div>
@@ -88,7 +95,7 @@ class Task extends Component {
 								data={data}
 							/>
 							<ButtonToolbar className="Task__editForm-buttons pull-right">
-								<Button>Cancel</Button>
+								<Button onClick={this.handleCloseClick.bind(this)}>Cancel</Button>
 								<Button bsStyle="primary">Save</Button>
 							</ButtonToolbar>
 						</div>
