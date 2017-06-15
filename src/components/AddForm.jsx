@@ -1,6 +1,6 @@
 import React from "react";
 import {
-	Form, FormGroup, FormControl, ControlLabel, InputGroup, DropdownButton, MenuItem
+	Form, FormGroup, FormControl, ControlLabel, InputGroup, DropdownButton, MenuItem, Image
 } from "react-bootstrap";
 import FileInput from './FileInput';
 
@@ -109,10 +109,14 @@ function AddForm(props) {
 							/>
 						}
 					</InputGroup>
-					<img
+					<Image
+						thumbnail
 						src={inputImage || props.data.image}
 						alt="Attach"
-						height={50}
+						style={{
+							height: "80px",
+							marginTop: "10px"
+						}}
 					/>
 				</FormGroup>
 			}

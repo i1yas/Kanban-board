@@ -98,6 +98,7 @@ class Task extends Component {
 								fields={usedFields}
 								data={data}
 							/>
+							<hr />
 							<ButtonToolbar className="Task__editForm-buttons pull-right">
 								<Button onClick={this.handleCloseClick.bind(this)}>Cancel</Button>
 								<Button bsStyle="primary">Save</Button>
