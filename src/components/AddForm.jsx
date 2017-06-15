@@ -5,6 +5,19 @@ import {
 import FileInput from './FileInput';
 
 function AddForm(props) {
+	function handleFileInput({path, files}) {
+		const file = files[0];
+		const reader = new FileReader();
+
+		reader.onloadend = function() {
+			inputImage = reader.result;
+		}
+
+		if(file) {
+			reader.readAsDataURL(file);
+		}
+	}
+
 	const allFields = ['title', 'content', 'labels', 'importantLabels', 'image', 'imageType'];
 
 	let fields
@@ -18,6 +31,8 @@ function AddForm(props) {
 	const userImageType = userImageTypesDict[props.data.imageType];
 	const userImageTypesList = [];
 	for(let key in userImageTypesDict) userImageTypesList.push(userImageTypesDict[key]);
+
+	let inputImage;
 
 	return (
 		<Form>
@@ -85,9 +100,16 @@ function AddForm(props) {
 							/>
 						}
 						{props.data.imageType === 'base64' &&
-							<FileInput />
+							<FileInput
+								onChange={handleFileInput}
+							/>
 						}
 					</InputGroup>
+					<img
+						src={inputImage || props.data.image}
+						alt="Attach"
+						height={50}
+					/>
 				</FormGroup>
 			}
 		</Form>
