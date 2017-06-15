@@ -4,11 +4,19 @@ import {
 } from "react-bootstrap";
 
 function AddForm(props) {
-	const allFields = ['title', 'content', 'labels', 'importantLabels', 'image'];
+	const allFields = ['title', 'content', 'labels', 'importantLabels', 'image', 'imageType'];
 
 	let fields
 	if (props.fields === 'all') fields = allFields;
 	else fields = props.fields;
+
+	const userImageTypesDict = {
+		'url': 'URL',
+		'base64': 'Local'
+	}
+	const userImageType = userImageTypesDict[props.data.imageType];
+	const userImageTypesList = [];
+	for(let key in userImageTypesDict) userImageTypesList.push(userImageTypesDict[key]);
 
 	return (
 		<Form>
@@ -55,15 +63,31 @@ function AddForm(props) {
 						<DropdownButton
 							componentClass={InputGroup.Button}
 							id="input-dropdown-addon"
-							title="Type"
+							title={userImageType}
 						>
-							<MenuItem key="1">URL</MenuItem>
+							{userImageTypesList.map((type, ind) => {
+								return (
+									<MenuItem
+										key={ind}
+										header={type === userImageType}
+									>
+									{type}
+									</MenuItem>
+								)
+							})}
 						</DropdownButton>
-						<FormControl
-							type="text"
-							placeholder="http://site.com/image.jpg"
-							value={props.data && props.data.image}
-						/>
+						{props.data.imageType === 'url' &&
+							<FormControl
+								type="text"
+								placeholder="http://site.com/image.jpg"
+								value={props.data && props.data.image}
+							/>
+						}
+						{props.data.imageType === 'base64' &&
+							<FormControl
+								type="file"
+							/>
+						}
 					</InputGroup>
 				</FormGroup>
 			}

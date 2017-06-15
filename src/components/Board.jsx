@@ -18,6 +18,7 @@ function Board(props) {
 							labels={task.labels}
 							importantLabels={task.importantLabels}
 							image={task.image}
+							imageType={task.imageType}
 							content={task.content}
 						/>
 					);

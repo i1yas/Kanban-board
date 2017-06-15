@@ -37,7 +37,7 @@ class Task extends Component {
 		this.offEditMode();
 	}
 	render() {
-		const allFields = ['title', 'content', 'labels', 'importantLabels', 'image'];
+		const allFields = ['title', 'content', 'labels', 'importantLabels', 'image', 'imageType'];
 		const usedFields = allFields.filter(field => this.props[field]);
 		const data = {};
 		for(let i = 0; i < usedFields.length; i++) {
