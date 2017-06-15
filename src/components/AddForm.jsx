@@ -17,6 +17,9 @@ function AddForm(props) {
 			reader.readAsDataURL(file);
 		}
 	}
+	function handleUrlInput(event) {
+		inputImage = event.target.value;
+	}
 
 	const allFields = ['title', 'content', 'labels', 'importantLabels', 'image', 'imageType'];
 
@@ -97,6 +100,7 @@ function AddForm(props) {
 								type="text"
 								placeholder="http://site.com/image.jpg"
 								value={props.data && props.data.image}
+								onChange={handleUrlInput}
 							/>
 						}
 						{props.data.imageType === 'base64' &&
