@@ -2,6 +2,7 @@ import React from "react";
 import {
 	Form, FormGroup, FormControl, ControlLabel, InputGroup, DropdownButton, MenuItem
 } from "react-bootstrap";
+import FileInput from './FileInput';
 
 function AddForm(props) {
 	const allFields = ['title', 'content', 'labels', 'importantLabels', 'image', 'imageType'];
@@ -84,9 +85,7 @@ function AddForm(props) {
 							/>
 						}
 						{props.data.imageType === 'base64' &&
-							<FormControl
-								type="file"
-							/>
+							<FileInput />
 						}
 					</InputGroup>
 				</FormGroup>
