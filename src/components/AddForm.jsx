@@ -55,21 +55,29 @@ class AddForm extends Component {
 			inputImage: event.target.value
 		})
 	}
+	handleFormChange(event) {
+		const prefix = 'addForm';
+		const fieldName = event.target.id.slice(prefix.length).toLowerCase();
+
+		const result = {};
+		result[fieldName] = event.target.value;
+
+		this.props.onChange(result);
+	}
 
 	render() {
-
 		return (
-			<Form>
+			<Form onChange={this.handleFormChange.bind(this)}>
 				{this.fields.indexOf('title') !== -1 &&
-					<FormGroup controlId="addFormName">
+					<FormGroup controlId="addFormTitle">
 						<ControlLabel>Title</ControlLabel>
-						<FormControl type="text" value={this.data && this.data.title} />
+						<FormControl type="text" value={this.props.data && this.props.data.title} />
 					</FormGroup>
 				}
 				{this.fields.indexOf('content') !== -1 &&
 					<FormGroup controlId="addFormContent">
 						<ControlLabel>Task content</ControlLabel>
-						<FormControl componentClass="textarea" value={this.data && this.data.content} />
+						<FormControl componentClass="textarea" value={this.props.data && this.props.data.content} />
 					</FormGroup>
 				}
 
@@ -80,7 +88,7 @@ class AddForm extends Component {
 						<FormControl
 							type="text"
 							placeholder="list of labels separated by a comma"
-							value={this.data && this.data.labels}
+							value={this.props.data && this.props.data.labels}
 						/>
 					</FormGroup>
 				}
@@ -90,14 +98,14 @@ class AddForm extends Component {
 						<FormControl
 							type="text"
 							placeholder="list of labels separated by a comma"
-							value={this.data && this.data.importantLabels}
+							value={this.props.data && this.props.data.importantLabels}
 						/>
 					</FormGroup>
 				}
 
 				{this.fields.indexOf('image') !== -1 && <hr />}
 				{this.fields.indexOf('image') !== -1 &&
-					<FormGroup>
+					<FormGroup controlId="addFormImage">
 						<ControlLabel>Image</ControlLabel>
 						<InputGroup>
 							<DropdownButton

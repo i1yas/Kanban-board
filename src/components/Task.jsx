@@ -7,9 +7,6 @@ import clickOutsideWrapper from "react-click-outside";
 class Task extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			isEdit: false
-		};
 
 		this.allFields = [
 			"title",
@@ -24,8 +21,24 @@ class Task extends Component {
 		for (let i = 0; i < this.usedFields.length; i++) {
 			this.data[this.usedFields[i]] = this.props[this.usedFields[i]];
 		}
+
+		this.state = {
+			isEdit: false,
+			data: this.data
+		};
+	}
+	updateTaskData(newTaskData) {
+		const newData = {
+			...this.state.data,
+			...newTaskData
+		}
+		this.setState({
+			...this.state,
+			data: newData
+		});
 	}
 	onEditMode() {
+
 		this.setState({
 			...this.state,
 			isEdit: true
@@ -59,20 +72,20 @@ class Task extends Component {
 						{this.props.image &&
 							<Media.Left>
 								<img
-									src={this.props.image}
-									alt={this.props.title}
+									src={this.state.data.image || this.props.image}
+									alt={this.state.data.title || this.props.title}
 									height={100}
 								/>
 							</Media.Left>}
 						<Media.Body>
-							{this.props.content}
+							{this.state.data.content || this.props.content}
 						</Media.Body>
 					</Media>
 				</div>
 				{(this.props.labels || this.props.importantLabels) &&
 					<div className="Task__labels">
 						{this.props.labels &&
-							this.props.labels.map((label, ind) => {
+							(this.state.data.labels || this.props.labels).map((label, ind) => {
 								return (
 									<span key={ind} className="Task__label">
 										<Label bsStyle="info">
@@ -83,7 +96,7 @@ class Task extends Component {
 								);
 							})}
 						{this.props.importantLabels &&
-							this.props.importantLabels.map((label, ind) => {
+							(this.state.data.importantLabels || this.props.importantLabels).map((label, ind) => {
 								return (
 									<span key={ind} className="Task__label">
 										<Label bsStyle="primary">
@@ -99,7 +112,11 @@ class Task extends Component {
 
 		const editFormPart = (
 			<div className="Task__editForm">
-				<AddForm fields={this.usedFields} data={this.data} />
+				<AddForm
+					fields={this.usedFields}
+					data={this.state.data}
+					onChange={this.updateTaskData.bind(this)}
+				/>
 				<hr />
 				<ButtonToolbar className="Task__editForm-buttons pull-right">
 					<Button onClick={this.handleCloseClick.bind(this)}>
@@ -112,7 +129,7 @@ class Task extends Component {
 
 		return (
 			<div className="Task" onClick={this.handleClickOnTask.bind(this)}>
-				<Panel header={this.props.title}>
+				<Panel header={this.state.data.title || this.props.title}>
 					{!this.state.isEdit && contentPart}
 					{this.state.isEdit && editFormPart}
 				</Panel>
