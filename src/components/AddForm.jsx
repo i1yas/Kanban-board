@@ -23,6 +23,11 @@ class AddForm extends Component {
 
 		this.userImageType = this.userImageTypesDict[this.data.imageType];
 		this.userImageTypesList = [];
+		for (let key in this.userImageTypesDict) {
+			const type = this.userImageTypesDict[key]
+			if(this.userImageTypesList.indexOf(type) !== -1) continue;
+			this.userImageTypesList.push(type);
+		}
 		
 		this.state = {
 			inputImage: null
@@ -52,11 +57,6 @@ class AddForm extends Component {
 	}
 
 	render() {
-		for (let key in this.userImageTypesDict) {
-			const type = this.userImageTypesDict[key]
-			if(this.userImageTypesList.indexOf(type) !== -1) continue;
-			this.userImageTypesList.push(type);
-		}
 
 		return (
 			<Form>
