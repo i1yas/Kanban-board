@@ -8,17 +8,20 @@ class AddForm extends Component {
 	constructor(props) {
 		super(props);
 
-		this.reader;
 		this.file = null;
 
 		this.allFields = ['title', 'content', 'labels', 'importantLabels', 'image', 'imageType'];
-		this.fields = this.props.fileds === 'all' ? this.allFields : this.props.fields;
+		this.fields = this.props.fields === 'all' ? this.allFields : this.props.fields;
+
+		this.defaultImageType = 'url';
+		this.data = this.props.data || {imageType: this.defaultImageType};
 
 		this.userImageTypesDict = {
 			'url': 'URL',
 			'base64': 'Local'
 		};
-		this.userImageType = this.userImageTypesDict[this.props.data.imageType];
+
+		this.userImageType = this.userImageTypesDict[this.data.imageType];
 		this.userImageTypesList = [];
 		
 		this.state = {
@@ -48,22 +51,25 @@ class AddForm extends Component {
 		})
 	}
 
-
 	render() {
-		for (let key in this.userImageTypesDict) this.userImageTypesList.push(this.userImageTypesDict[key]);
+		for (let key in this.userImageTypesDict) {
+			const type = this.userImageTypesDict[key]
+			if(this.userImageTypesList.indexOf(type) !== -1) continue;
+			this.userImageTypesList.push(type);
+		}
 
 		return (
 			<Form>
 				{this.fields.indexOf('title') !== -1 &&
 					<FormGroup controlId="addFormName">
 						<ControlLabel>Title</ControlLabel>
-						<FormControl type="text" value={this.props.data && this.props.data.title} />
+						<FormControl type="text" value={this.data && this.data.title} />
 					</FormGroup>
 				}
 				{this.fields.indexOf('content') !== -1 &&
 					<FormGroup controlId="addFormContent">
 						<ControlLabel>Task content</ControlLabel>
-						<FormControl componentClass="textarea" value={this.props.data && this.props.data.content} />
+						<FormControl componentClass="textarea" value={this.data && this.data.content} />
 					</FormGroup>
 				}
 
@@ -74,7 +80,7 @@ class AddForm extends Component {
 						<FormControl
 							type="text"
 							placeholder="list of labels separated by a comma"
-							value={this.props.data && this.props.data.labels}
+							value={this.data && this.data.labels}
 						/>
 					</FormGroup>
 				}
@@ -84,7 +90,7 @@ class AddForm extends Component {
 						<FormControl
 							type="text"
 							placeholder="list of labels separated by a comma"
-							value={this.props.data && this.props.data.importantLabels}
+							value={this.data && this.data.importantLabels}
 						/>
 					</FormGroup>
 				}
@@ -110,29 +116,31 @@ class AddForm extends Component {
 									)
 								})}
 							</DropdownButton>
-							{this.props.data.imageType === 'url' &&
+							{this.data.imageType === 'url' &&
 								<FormControl
 									type="text"
 									placeholder="http://site.com/image.jpg"
-									value={this.props.data && (this.state.inputImage || this.props.data.image)}
+									value={this.data && (this.state.inputImage || this.data.image)}
 									onChange={this.handleUrlInput.bind(this)}
 								/>
 							}
-							{this.props.data.imageType === 'base64' &&
+							{this.data.imageType === 'base64' &&
 								<FileInput
 									onChange={this.handleFileInput.bind(this)}
 								/>
 							}
 						</InputGroup>
-						<Image
-							thumbnail
-							src={this.state.inputImage || this.props.data.image}
-							alt="Attach"
-							style={{
-								height: "80px",
-								marginTop: "10px"
-							}}
-						/>
+						{this.data.image &&
+							<Image
+								thumbnail
+								src={this.state.inputImage || this.data.image}
+								alt="Attach"
+								style={{
+									height: "80px",
+									marginTop: "10px"
+								}}
+							/>
+						}
 					</FormGroup>
 				}
 			</Form>
