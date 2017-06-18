@@ -22,6 +22,41 @@ class App extends Component {
 
 		this.setState({...this.state, isShowAddWindow: isShow})
 	}
+	updateData(dataLevel, dataUnit, boardName) {
+		const dataLevelsDict = {
+			boardsList: handleBoardsList,
+			board: handleBoard,
+			task: handleTask
+		};
+
+		function handleBoardsList() {
+			this.setState({
+				...this.state,
+				boardsList: dataUnit
+			});
+		}
+		function handleBoard() {
+			const filteredOldBoardsList = this.state.boardsList.filter(board => board.name.toLowerCase() !== boardName.toLowerCase());
+			const newBoardsList = [...filteredOldBoardsList, dataUnit];
+
+			this.updateData('boardsList', newBoardsList);
+		}
+		function handleTask() {
+			const currentBoard = this.state.boardsList.find(board => board.name.toLowerCase() === boardName.toLowerCase());
+			const filteredOldTaskList = currentBoard.tasks.filter(task => task.title !== dataUnit.title);
+			const newBoard = {
+				...currentBoard,
+				tasks: [
+					...filteredOldTaskList,
+					dataUnit
+				]
+			};
+			
+			this.updateData('board', newBoard, boardName);
+		}
+
+		dataLevelsDict[dataLevel].call(this);
+	}
 	render() {
 		return (
 			<div className="App">
@@ -34,7 +69,8 @@ class App extends Component {
 				<AddWindow
 					show={this.state.isShowAddWindow}
 					actions={{
-						toggleWindow: this.toggleAddWindow.bind(this)
+						toggleWindow: this.toggleAddWindow.bind(this),
+						updateData: this.updateData.bind(this)
 					}}
 				/>
 

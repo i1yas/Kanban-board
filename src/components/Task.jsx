@@ -27,7 +27,16 @@ class Task extends Component {
 			data: this.data
 		};
 	}
-	updateTaskData(newTaskData) {
+	resetState() {
+		this.setState({
+			...this.state,
+			data: this.data
+		});
+	}
+	saveData() {
+		this.props.updateData()
+	}
+	updateState(newTaskData) {
 		const newData = {
 			...this.state.data,
 			...newTaskData
@@ -38,7 +47,6 @@ class Task extends Component {
 		});
 	}
 	onEditMode() {
-
 		this.setState({
 			...this.state,
 			isEdit: true
@@ -50,8 +58,15 @@ class Task extends Component {
 			isEdit: false
 		});
 	}
-	handleCloseClick() {
+	closeTask() {
+		this.resetState();
 		this.offEditMode();
+	}
+	handleCloseClick() {
+		this.closeTask();
+	}
+	handleSaveClick() {
+		this.saveData();
 	}
 	handleClickOnTask(event) {
 		if (this.state.isEdit) {
@@ -61,7 +76,7 @@ class Task extends Component {
 		this.onEditMode();
 	}
 	handleClickOutside() { // react-click-outside's method
-		this.offEditMode();
+		this.closeTask();
 	}
 	render() {
 
@@ -72,20 +87,20 @@ class Task extends Component {
 						{this.props.image &&
 							<Media.Left>
 								<img
-									src={this.state.data.image || this.props.image}
-									alt={this.state.data.title || this.props.title}
+									src={ this.props.image}
+									alt={ this.props.title}
 									height={100}
 								/>
 							</Media.Left>}
 						<Media.Body>
-							{this.state.data.content || this.props.content}
+							{ this.props.content}
 						</Media.Body>
 					</Media>
 				</div>
 				{(this.props.labels || this.props.importantLabels) &&
 					<div className="Task__labels">
 						{this.props.labels &&
-							(this.state.data.labels || this.props.labels).map((label, ind) => {
+							( this.props.labels).map((label, ind) => {
 								return (
 									<span key={ind} className="Task__label">
 										<Label bsStyle="info">
@@ -96,7 +111,7 @@ class Task extends Component {
 								);
 							})}
 						{this.props.importantLabels &&
-							(this.state.data.importantLabels || this.props.importantLabels).map((label, ind) => {
+							( this.props.importantLabels).map((label, ind) => {
 								return (
 									<span key={ind} className="Task__label">
 										<Label bsStyle="primary">
@@ -115,21 +130,24 @@ class Task extends Component {
 				<AddForm
 					fields={this.usedFields}
 					data={this.state.data}
-					onChange={this.updateTaskData.bind(this)}
+					onChange={this.updateState.bind(this)}
 				/>
 				<hr />
 				<ButtonToolbar className="Task__editForm-buttons pull-right">
 					<Button onClick={this.handleCloseClick.bind(this)}>
 						Cancel
 					</Button>
-					<Button bsStyle="primary">Save</Button>
+					<Button
+						bsStyle="primary"
+						onClick={this.handleSaveClick.bind(this)}
+					>Save</Button>
 				</ButtonToolbar>
 			</div>
 		);
 
 		return (
 			<div className="Task" onClick={this.handleClickOnTask.bind(this)}>
-				<Panel header={this.state.data.title || this.props.title}>
+				<Panel header={ this.props.title}>
 					{!this.state.isEdit && contentPart}
 					{this.state.isEdit && editFormPart}
 				</Panel>
